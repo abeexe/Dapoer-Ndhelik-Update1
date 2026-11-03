@@ -1,27 +1,40 @@
+// ===== FUNGSI NAVIGASI SLIDE =====
+function goToSlide(slideId) {
+    document.querySelectorAll('.slide').forEach(slide => {
+        slide.classList.remove('active');
+    });
+    
+    const target = document.getElementById(slideId);
+    if (target) {
+        target.classList.add('active');
+        target.scrollTop = 0;
+    }
+}
+
 // ===== DATA MENU (per halaman buku) =====
 const pages = [
     {
         kicker: "1",
-        title: "Paket",
-        subtitle: "Sajian lengkap untuk keluarga",
+        title: "Menu Paket",
+        subtitle: "Sajian lengkap untuk keluarga & acara",
         items: [
+            { nama: "Paket Ayam Ingkung - Large", deskripsi: "6 Porsi Nasi Putih/Tiwul + Urap + Lalapan + Sambel + Lodeh + 6 Es Teh/Es Jeruk", harga: 185000 },
+            { nama: "Paket Ayam Ingkung - Medium", deskripsi: "4 Porsi Nasi Putih/Tiwul + Urap + Lalapan + Sambel + Lodeh + 4 Es Teh/Es Jeruk", harga: 145000 },
+            { nama: "Paket Ayam Ingkung - Small", deskripsi: "4 Porsi Nasi Putih/Tiwul + Urap + Lalapan + Sambel + Lodeh + 4 Es Teh/Es Jeruk", harga: 130000 },
+            { nama: "Paket Bebek Ingkung", deskripsi: "4 Porsi Nasi Putih/Tiwul + Urap + Lalapan + Sambel + Lodeh + 4 Es Teh/Es Jeruk", harga: 150000 },
             { nama: "Paket Bebek Goreng", deskripsi: "Nasi + Lodeh + Urap + Sambel + Lalapan + Es Teh / Es Jeruk", harga: 40000 },
             { nama: "Paket Bebek Panggang", deskripsi: "Nasi Putih/Tiwul + Urap + Lalapan + Sambel + Lodeh + Es Teh / Es Jeruk", harga: 42000 },
-            { nama: "Paket Ayam Ingkung - Large", deskripsi: "6 Porsi Nasi + Urap + Lalapan + Sambel + Lodeh + 6 Es Teh/Es Jeruk", harga: 185000 },
-            { nama: "Paket Ayam Ingkung - Medium", deskripsi: "4 Porsi Nasi + Urap + Lalapan + Sambel + Lodeh + 4 Es Teh/Es Jeruk", harga: 145000 },
-            { nama: "Paket Ayam Ingkung - Small", deskripsi: "4 Porsi Nasi + Urap + Lalapan + Sambel + Lodeh + 4 Es Teh/Es Jeruk", harga: 130000 },
-            { nama: "Paket Bebek Ingkung", deskripsi: "4 Porsi Nasi + Urap + Lalapan + Sambel + Lodeh + 4 Es Teh/Es Jeruk", harga: 150000 },
-            { nama: "Paket Ayam Kampung 1/4 Sambel Tempong", deskripsi: "Nasi + Tempe + Tahu + Terong + Lalapan + Sambel Tempong", harga: 34000 },
+            { nama: "Paket Ayam Kampung 1/4 Sambel Tempong", deskripsi: "Nasi + Tempe + Tahu + Terong + Lalapan + Sambel Tempong + Es Teh/Es Jeruk", harga: 34000 },
             { nama: "Paket Ayam Kampung Goreng 1/4", deskripsi: "Nasi + Lodeh + Urap + Sambel + Lalapan + Es Teh/Es Jeruk", harga: 32000 },
             { nama: "Paket Ayam Kampung Panggang 1/4", deskripsi: "Nasi + Lodeh + Urap + Sambel + Lalapan + Es Teh/Es Jeruk", harga: 33000 },
             { nama: "Paket Ayam Ekonomis Goreng / Bakar", deskripsi: "Nasi + Urap + Sambel + Lalapan + Es Teh/Es Jeruk", harga: 24000 },
-            { nama: "Paket Ayam Ekonomis Sambal Tempong", deskripsi: "Nasi + Tempe + Tahu + Terong + Lalapan + Sambel Tempong", harga: 24000 }
+            { nama: "Paket Ayam Ekonomis Sambal Tempong", deskripsi: "Nasi + Tempe + Tahu + Terong + Lalapan + Sambel Tempong + Es Teh/Es Jeruk", harga: 24000 }
         ]
     },
     {
         kicker: "2",
-        title: "Makanan",
-        subtitle: "Hidangan utama dari dapur kami",
+        title: "Makanan Utama",
+        subtitle: "Aneka olahan ayam, bebek, ikan, dan udang",
         items: [
             { nama: "Ayam Ingkung Utuh - Large", harga: 125000 },
             { nama: "Ayam Ingkung Utuh - Medium", harga: 100000 },
@@ -41,22 +54,47 @@ const pages = [
             { nama: "Udang Goreng", harga: 15000 },
             { nama: "Udang Bakar", harga: 15000 },
             { nama: "Udang Asam Manis (2 Porsi)", harga: 60000 },
+            { nama: "Udang Bumbu Telur Asin (2 Porsi)", harga: 60000 },
             { nama: "Ikan Benggol Sambal Tempong", harga: 20000 },
             { nama: "Nila Goreng", harga: 20000 },
             { nama: "Nila Bakar", harga: 23000 },
+            { nama: "Nila Bumbu Telur Asin", harga: 30000 },
             { nama: "Lele Goreng", harga: 14000 },
             { nama: "Lele Bakar", harga: 17000 },
             { nama: "Telur Kriwul", harga: 6000 },
-            { nama: "Mie Goreng Ndhe'lik Ori", deskripsi: "Mie + Sayur + Telur", harga: 15000 },
-            { nama: "Mie Goreng Ndhe'lik Spesial", deskripsi: "Telur + Ayam + Sosis + Bakso", harga: 20000 },
-            { nama: "Nasi Goreng Original", deskripsi: "Sayur + Telur", harga: 15000 },
-            { nama: "Nasi Goreng Spesial", deskripsi: "Sayur + Telur + Ayam", harga: 18000 }
+            { nama: "Gurami Goreng (2 Porsi)", harga: 50000 },
+            { nama: "Gurami Bakar (2 Porsi)", harga: 60000 },
+            { nama: "Gurami Asam Manis (2 Porsi)", harga: 70000 },
+            { nama: "Gurami Bumbu Telur Asin (2 Porsi)", harga: 70000 }
         ]
     },
     {
         kicker: "3",
+        title: "Mie, Nasi & Pendamping",
+        subtitle: "Karbohidrat dan pelengkap hidangan",
+        items: [
+            { nama: "Mie Goreng Ndhe'lik Ori", deskripsi: "Mie + Sayur + Telur", harga: 15000 },
+            { nama: "Mie Goreng Ndhe'lik Spesial", deskripsi: "Telur + Ayam + Sosis + Bakso", harga: 20000 },
+            { nama: "Mie Kuah Ndhe'lik Ori", deskripsi: "Mie + Sayur + Telur", harga: 15000 },
+            { nama: "Mie Kuah Ndhe'lik Spesial", deskripsi: "Telur + Ayam + Sosis + Bakso", harga: 20000 },
+            { nama: "Nasi Goreng Original", deskripsi: "Sayur + Telur", harga: 15000 },
+            { nama: "Nasi Goreng Spesial", deskripsi: "Sayur + Telur + Ayam", harga: 18000 },
+            { nama: "Nasi Putih", harga: 5000 },
+            { nama: "Nasi Tiwul", harga: 5000 },
+            { nama: "Sambal Tomat", harga: 2000 },
+            { nama: "Sambal Ijo", harga: 2000 },
+            { nama: "Sambal Tempong", harga: 2000 },
+            { nama: "Sambal Bawang", harga: 2000 },
+            { nama: "Cha Kangkung", harga: 7000 },
+            { nama: "Cha Toge", harga: 7000 },
+            { nama: "Cha Daun Pepaya", harga: 7000 },
+            { nama: "Terong Sambal", harga: 7000 }
+        ]
+    },
+    {
+        kicker: "4",
         title: "Minuman",
-        subtitle: "Kopi, jus, dan minuman segar",
+        subtitle: "Kopi, aneka es, dan minuman hangat",
         items: [
             { nama: "Kopi Hitam Cangkir Kecil", harga: 5000 },
             { nama: "Kopi Hitam Cangkir Besar", harga: 7000 },
@@ -67,36 +105,48 @@ const pages = [
             { nama: "Kopi Cokot", harga: 7000 },
             { nama: "Kopi Gelas Cantel", harga: 8000 },
             { nama: "Es Kelapa Muda", harga: 17000 },
-            { nama: "Es Teler Creamy", harga: 15000 },
+            { nama: "Es Teler Creamy", harga: 18000 },
             { nama: "Es Matcha", harga: 15000 },
             { nama: "Red Velvet", harga: 15000 },
-            { nama: "Soda Gembira", harga: 12000 },
+            { nama: "Soda Gembira", harga: 13000 },
             { nama: "Chen Chu Nai Cha", harga: 10000 },
             { nama: "Naicha", harga: 7000 },
             { nama: "Es Cao", harga: 6000 },
             { nama: "Wedang Jahe", harga: 8000 },
-            { nama: "Kujaseruk (Minuman Rempah)", harga: 6000 },
+            { nama: "Kujaseruk (Minuman Rempah Ndhe'lik Es/Hangat)", harga: 6000 },
             { nama: "Kunyit Asam Ramuan Simbah", harga: 9000 },
             { nama: "Milo (Es/Hangat)", harga: 6000 },
             { nama: "Jeruk (Es/Hangat)", harga: 6000 },
             { nama: "Teh (Es/Hangat)", harga: 6000 },
-            { nama: "Air Mineral", harga: 6000 },
+            { nama: "Air Mineral", harga: 6000 }
+        ]
+    },
+    {
+        kicker: "5",
+        title: "Aneka Jus",
+        subtitle: "Jus buah segar dan racikan sehat",
+        items: [
             { nama: "Jus Tomat", harga: 12000 },
             { nama: "Jus Wortel", harga: 12000 },
             { nama: "Jus Nanas", harga: 12000 },
+            { nama: "Jus Nangka", harga: 12000 },
             { nama: "Jus Semangka", harga: 12000 },
             { nama: "Jus Hidrasi (Semangka + Nanas)", harga: 14000 },
             { nama: "Jus Glowing (Wortel + Tomat)", harga: 14000 },
             { nama: "Jus Imunitas (Wortel + Nanas)", harga: 14000 },
+            { nama: "Jus Antioksidan (Timun + Nanas)", harga: 14000 },
+            { nama: "Jus Melon", harga: 14000 },
             { nama: "Jus Wortel + Timun + Nanas", harga: 15000 },
             { nama: "Jus Timun + Wortel + Tomat", harga: 15000 },
+            { nama: "Jus Timun + Nanas + Nipis", harga: 15000 },
+            { nama: "Jus Semangka + Wortel + Timun", harga: 15000 },
             { nama: "Jus Semangka + Nanas + Tomat", harga: 15000 }
         ]
     },
     {
-        kicker: "4",
-        title: "Snack",
-        subtitle: "Camilan untuk teman ngobrol",
+        kicker: "6",
+        title: "Snack & Camilan",
+        subtitle: "Teman ngobrol dan santai Anda",
         items: [
             { nama: "Pisang Coklat", harga: 10000 },
             { nama: "Pisang Goreng", harga: 10000 },
@@ -106,7 +156,6 @@ const pages = [
             { nama: "Tanping Abon", harga: 15000 },
             { nama: "Tanping Sosis", harga: 15000 },
             { nama: "Mix Platter", deskripsi: "Nugget, Tahu Crispy, Kentang, Sosis", harga: 15000 },
-            { nama: "Sui Ciao (Isi 5)", harga: 15000 },
             { nama: "Sui Ciao (Isi 10)", harga: 25000 },
             { nama: "Kentang Goreng", harga: 10000 },
             { nama: "Tempe Mendoan", harga: 7000 },
@@ -118,7 +167,6 @@ const pages = [
 ];
 
 const NOMOR_WA = "6285602808948";
-
 let currentPage = 0;
 let isFlipping = false;
 
@@ -139,7 +187,7 @@ function renderPage(index) {
     content.innerHTML = `
         <div class="page-header">
             <div class="page-header-inner">
-                <span class="page-kicker">${page.kicker}</span>
+                <span class="page-kicker">Halaman ${page.kicker}</span>
                 <h3 class="page-title">${page.title}</h3>
                 <p class="page-subtitle">${page.subtitle}</p>
             </div>
@@ -162,7 +210,6 @@ function renderPage(index) {
 
     pageNum.textContent = index + 1;
     indicator.textContent = `Halaman ${index + 1} / ${pages.length}`;
-
     prevBtn.disabled = index === 0;
     nextBtn.disabled = index === pages.length - 1;
 }
@@ -189,43 +236,6 @@ function flipTo(index, direction) {
 function nextPage() { flipTo(currentPage + 1, "next"); }
 function prevPage() { flipTo(currentPage - 1, "prev"); }
 
-// ===== NAVBAR SCROLL =====
-const navbar = document.getElementById("navbar");
-window.addEventListener("scroll", () => {
-    if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 40);
-});
-
-// ===== HAMBURGER =====
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("navMenu");
-
-if (hamburger && navMenu) {
-    hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("active");
-        navMenu.classList.toggle("active");
-    });
-
-    navMenu.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-            hamburger.classList.remove("active");
-            navMenu.classList.remove("active");
-        });
-    });
-}
-
-// ===== SMOOTH SCROLL =====
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener("click", function(e) {
-        const href = this.getAttribute("href");
-        if (href === "#") return;
-        const target = document.querySelector(href);
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-    });
-});
-
 // ===== INIT =====
 document.addEventListener("DOMContentLoaded", () => {
     renderPage(0);
@@ -236,13 +246,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (prevBtn) prevBtn.addEventListener("click", prevPage);
     if (nextBtn) nextBtn.addEventListener("click", nextPage);
 
-    // Keyboard navigation
     document.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") nextPage();
-        if (e.key === "ArrowLeft") prevPage();
+        const bookSlide = document.getElementById('buku');
+        if (bookSlide.classList.contains('active')) {
+            if (e.key === "ArrowRight") nextPage();
+            if (e.key === "ArrowLeft") prevPage();
+        }
     });
 
-    // Swipe support untuk mobile
     let touchStartX = 0;
     const bookPage = document.getElementById("bookPage");
     if (bookPage) {
